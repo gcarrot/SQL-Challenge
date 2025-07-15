@@ -102,7 +102,7 @@ Uporabi priloženo datoteko [`industry_workorders_200k.sql`](industry_workorders
 
 ## 📌 Namigi
 
-- Bodite pozorni na **indekse**, če optimizirate poizvedbe.
+- Bodite pozorni na **indekse**, če optimizirate poizvedbe (uporaba lokalne baze).
 - Preverite ali lahko rešite izzive z eno samo poizvedbo.
 - Uporabite **CTE** (Common Table Expressions) za boljšo berljivost kompleksnih poizvedb.
 
