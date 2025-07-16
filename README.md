@@ -2,9 +2,49 @@
 
 ## 📘 Opis
 
-V tem izzivu boste delali z bazo, ki simulira podatke iz proizvodnega okolja. Cilj je vaditi **povezovanje tabel (JOIN)**, **optimizacijo poizvedb**, **združevanje (GROUP BY)**, **uporabo agregatov** in razumevanje osnov normalizirane sheme podatkov.
+V tem izzivu boste delali z realistično simulacijo podatkov iz industrijskega proizvodnega okolja. Podatkovna baza vključuje delovne naloge (workorders), operacije, materiale, proizvodne linije in zaposlene.  
 
----
+Cilj izziva je poglobiti razumevanje:
+
+- **povezovanja tabel (JOIN)** med več entitetami,
+- **združevanja podatkov (GROUP BY)** in uporabe **agregatnih funkcij**,
+- **filtriranja in sortiranja**,
+- ter osnov **normalizacije podatkov**.
+
+Dodaten poudarek je tudi na **učinkovitosti poizvedb** in **merjenju zmogljivosti**.
+
+## 💻 Tehnološke smernice za rešitev
+
+Aplikacijo implementiraj kot **.NET konzolno aplikacijo** (priporočena zadnja različica .NET 8 ali višje), s pomočjo:
+
+- **Entity Framework** za dostop do podatkovne baze,
+- **LINQ** za izvajanje poizvedb nad podatki,
+- **`Stopwatch`** iz `System.Diagnostics` za merjenje časa izvajanja posameznih poizvedb,
+- opcijsko tudi `ILogger` ali `Console.WriteLine()` za logiranje rezultatov.
+
+Cilj je izmeriti, kako hitro se izvedejo poizvedbe nad velikimi količinami podatkov (200.000+ vrstic) in oceniti, ali so poizvedbe ustrezno optimizirane.
+
+### 📌 Primer začetka aplikacije v .NET
+
+```csharp
+var stopwatch = Stopwatch.StartNew();
+
+using var context = new ProductionDbContext();
+
+// Primer preproste poizvedbe
+var topEmployees = await context.WorkOrderOperations
+    .GroupBy(op => op.EmployeeId)
+    .Select(g => new {
+        EmployeeId = g.Key,
+        OperationCount = g.Count()
+    })
+    .OrderByDescending(x => x.OperationCount)
+    .Take(5)
+    .ToListAsync();
+
+stopwatch.Stop();
+Console.WriteLine($"Čas izvajanja: {stopwatch.ElapsedMilliseconds} ms");
+```
 
 ## 📊 Struktura baznih tabel
 
@@ -111,4 +151,4 @@ Uporabi priloženo datoteko [`industry_workorders_200k.sql`](industry_workorders
 ## 📦 Avtorji in podpora
 
 Ta izziv je bil generiran za namen vadbe industrijskih SQL scenarijev in optimizacije poizvedb.  
-V primeru težav ali napak se lahko obrnete na mentorja ali vodjo ekipe.
+V primeru težav ali napak se lahko obrnete na avtorja.
