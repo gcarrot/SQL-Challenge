@@ -1,4 +1,4 @@
-# 🏭 SQL Izziv: Industrijska proizvodnja z delovnimi nalogi
+# 🏭 SQL & .NET Izziv: Industrijska proizvodnja z delovnimi nalogi
 
 ## 📘 Opis
 
@@ -61,7 +61,10 @@ Console.WriteLine($"Čas izvajanja: {stopwatch.ElapsedMilliseconds} ms");
 
 ## 🔍 Opis stolpcev
 
-### `ProductionLines`
+### `Kreiranje baze`
+Uporabi priloženo datoteko [`industry_workorders_200k.sql`](industry_workorders_200k.sql):
+
+### `ProductionLines
 | Stolpec   | Pomen                                 |
 |-----------|---------------------------------------|
 | Id        | Primarni ključ                        |
@@ -132,7 +135,6 @@ Console.WriteLine($"Čas izvajanja: {stopwatch.ElapsedMilliseconds} ms");
 
 ## 🛠️ Začetek
 
-Uporabi priloženo datoteko [`industry_workorders_200k.sql`](industry_workorders_200k.sql), da:
 
 1. Ustvariš shemo baze v SQL Server.
 2. Uvoziš podatke (približno 200.000 vrstic).
